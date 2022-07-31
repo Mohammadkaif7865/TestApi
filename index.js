@@ -28,7 +28,7 @@ app.get("/Data", (req, res) => {
       res.send(result);
     });
 });
-//9 to placeorder
+//9 to Add data
 app.post("/Data/Add", (req, res) => {
   db.collection("Data").insertMany(req.body, (err, result) => {
     if (err) throw err;
