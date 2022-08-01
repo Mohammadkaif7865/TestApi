@@ -30,7 +30,7 @@ app.get("/Data", (req, res) => {
 });
 //9 to Add data
 app.post("/Data/Add", (req, res) => {
-  db.collection("Data").insertMany(req.body, (err, result) => {
+  db.collection("Data").insertOne(req.body, (err, result) => {
     if (err) throw err;
     res.send(result);
   });
