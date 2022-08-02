@@ -37,11 +37,19 @@ app.post("/Data/Add", (req, res) => {
 });
 //3 to delete document from the collection
 app.delete("/Data/:id", (req, res) => {
-  db.collection("Data").deleteOne({ _id:  new mongo.ObjectId(req.params.id) }, (err, result) => {
+  db.collection("Data").deleteOne({ _id: new mongo.ObjectId(req.params.id) }, (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 });
+// 4 to update data
+app.put("/DataUpdate/:id", (req, res) => {
+  // db.coll.update({"_id": 1}, {$set: {"year": 2016, name: "Max"}})
+  db.collection("Data").updateOne({ _id: new mongo.ObjectId(req.params.id) }, { $set: { name: req.body.name, email: req.body.email, password: req.body.password } },(err, result)=>{
+    if (err) throw err;
+    res.send(result);
+  })
+})
 //Connection with db
 MongoClient.connect(mongoUrl, (err, client) => {
   if (err) console.log(`Error While Connecting`);
