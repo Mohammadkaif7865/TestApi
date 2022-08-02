@@ -37,7 +37,7 @@ app.post("/Data/Add", (req, res) => {
 });
 //3 to delete document from the collection
 app.delete("/Data/:id", (req, res) => {
-  db.collection("Data").deleteOne({ _id: req.params.id }, (err, result) => {
+  db.collection("Data").deleteOne({ _id:  new mongo.ObjectId(req.params.id) }, (err, result) => {
     if (err) throw err;
     res.send(result);
   });
